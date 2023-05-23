@@ -3,6 +3,9 @@
 <head>
     <title>Tic Tac Toe</title>
     <style>
+        body{
+            margin: 0;
+        }
           @font-face {
             font-family: myfont;
             src: url(C:\Users\mamay\Downloads\star_jedi.zip\starjedi);
@@ -15,8 +18,18 @@
             --clr-neontwo : #4343ff ;
         }
         .container{
-          
+            position: static;
+            display: flex; 
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+           
+           justify-content: center;
+           background-image: url(back.fix.jpg);
+           
+           align-items: center;
         }
+      
         td {
             border-radius: 5px;
             font-family: 'Star Jedi', arial;
@@ -33,6 +46,10 @@
             border: var(--clr-neon )2px solid;
             box-shadow: inset 0 0 .5em var(--clr-neon),0 0 .5em var(--clr-neon)
 ;
+
+color: black;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+    text-shadow: 0 0 20px #ffffff ;
         }
         .reset-button {
             display: block;
@@ -43,10 +60,129 @@
             background-color: #ccc;
             cursor: pointer;
         }
+         
+
+        .player{
+        
+        font-family: 'Star Jedi', arial;
+
+           display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #ddd;
+        
+        justify-content: center;
+        align-items: center;
+    }
+    .player-x-score{
+       font-size: 25px;
+  padding: 20px;
+   
+   border-top:hidden ;
+   border-bottom: hidden;
+   border-left: hidden;
+        color: black;
+         -webkit-text-stroke: 1px rgb(255, 26, 26);
+text-shadow: 0 0 20px #ff005b ;
+    }
+    .player-o-score{
+        font-size: 25px;
+        
+        padding: 20px;
+   border-top:hidden ;
+   border-bottom: hidden;
+   border-right: hidden;
+   -webkit-text-stroke: 1px rgb(0, 8, 255);
+        color: rgb(0, 0, 0);
+        text-shadow: 0 0 20px #0099ff ;
+    }
+    .score{
+        font-size: 40px;
+        padding: 20px;
+        margin-top: 5px;
+        text-align: center;
+
+    }
+
+.results{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+font-size: 30px;
+width: 200px;
+color: #000000;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+text-align: center;
+text-shadow: 0 0 20px #ffffff ;
+}
+ .turn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ margin-top: 20px;
+  
+    width: 200px;
+  height: 60px;
+    border-radius: 5px;
+            font-family: 'Star Jedi', arial;
+    font-size: 20px;
+            
+           text-align: center;
+      
+  border: none;
+  border: 2px solid white;
+            box-shadow: inset 0 0 .5em white,0 0 .5em white;
+            color: #000000;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+text-align: center;
+text-shadow: 0 0 20px #ffffff ;
+}  
+.reset{
+   
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+  justify-content: center;
+ }.reset-point{
+            
+    font-family: 'Star Jedi', Arial;
+    font-size: 20px;
+    border-radius: 10px;
+background-color: #000000;
+border: 2px solid yellow;
+color: #000000;
+-webkit-text-stroke: 1px rgb(238, 255, 0);
+box-shadow: inset 0 0 0.5em var(--clr-neon), 0 0 0.5em var(--clr-neon);
+text-shadow: 0 0 10px #e5ff00 ;
+cursor: pointer;
+       } 
+      
+        .reset-point:hover:before {
+            animation: none;
+            opacity: 0;
+        }
+        .reset-point:hover {
+            color: #000000;
+            background-color: #FFE81F;
+        }
+        .bord-player{
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+.playerwin-player{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
     </style>
 </head>
 <body>
     <div class="container">
+     
         <div class="bord">
             <table>
                 <tr>
@@ -85,16 +221,50 @@
                     <td onclick="makeMove(4, 4)"></td>
                 </tr>
             </table>
+
         </div>
-        <p>Player 1 score: <span id="score1">0</span></p>
-        <p>Player 2 score: <span id="score2">0</span></p>
-        <div class="reset-button" onclick="resetBoard()">Reset Board</div>
-        <div class="reset-button" onclick="resetScore()">Reset Score</div>
+        <div class="bord-player">
+
+        <div id="turn" class="turn">
+         
+                    </div>
+                    <div class="playerwin-player">
+                        <div class="player">
+                            <div id="plx" class="player-x-score">
+                            
+                            player 1 ( x )
+                            <div id="score1" class="score x" >
+                            0
+                            
+                            </div>
+                            </div>
+                            <div id="result" class="results" >
+                            
+                
+                            </div>
+                            <div id="plo" class="player-o-score">
+                               
+                                player 2 ( o )
+                                <div id="score2" class="score o" >
+                                   0
+                                </div>
+                            </div>
+                                        </div>
+                    </div>
+
+        
+   <div class="reset">
+    
+    <button class="reset-point" onclick="resetScore()">reset score</button>
+   </div>
+       
     </div>
    
    
+</div>
     <script>
         // 5x5 array to represent the game board
+        /* เก็บในcrudcrud เก็บเป็น x o*/
         var board = [
             ['', '', '', '', ''],
             ['', '', '', '', ''],
@@ -102,66 +272,99 @@
             ['', '', '', '', ''],
             ['', '', '', '', '']
         ];
-
+var a = 0 ;
         var score1 =0;
         var score2 =0;
-        var currentPlayer = 'X';
-        function randomFirstPlayer(){
+        var currentPlayer = 'x';
+         let gameEnded = false;
+/*displayer when player win*/
+        const player1Win =document.getElementById('player1win');
+        const player2Win =document.getElementById('player2win');
+const tie = document.getElementById('tie');
+/*                          */
+
+var player_x = document.getElementById('plx');
+var player_o = document.getElementById('plo');
+   
+/*function randomFirstPlayer(){                                                   /////random first player X or O
             const num1 = Math.floor((Math.random() * 2) + 1);
             if(num1 == 1){
-                currentPlayer ='X';         
+          
+                currentPlayer ='x';    
+
             }else{
-                currentPlayer ='O';       
+                currentPlayer ='o';  
+                     
             }
-            console.log(currentPlayer);
-         
+          
+          
         }
-        function scorePlayer1() {
+        */
+        function scorePlayer1() {                                                               /////add score player1
             score1++;
             console.log(score1);
             document.getElementById('score1').textContent = score1;
         }
-        function scorePlayer2() {
-    score2++;
-    console.log(score2);
-    document.getElementById('score2').textContent = score2;
-}
+        function scorePlayer2() {                                                               /////add score player1
+            score2++;
+            console.log(score2);
+            document.getElementById('score2').textContent = score2;
+        }
 
-
-        function resetScore() {
+        function resetScore() {                                                             /////reset score player
       score1 = 0;
       score2 = 0;
       document.getElementById('score1').textContent = score1;
       document.getElementById('score2').textContent = score2;
     }
 
-        function makeMove(row, col) {
+        function makeMove(row, col) {     
+       
+            a++;
             // Check if the cell is empty
-            if (board[row][col] === '') {
+            if (board[row][col] === '')  {
+                
                 // Set the current player's symbol on the board
                 board[row][col] = currentPlayer;
                 // Update the cell with the current player's symbol
                 document.getElementsByTagName('td')[row * 5 + col].innerHTML = currentPlayer;
-                // Check for a win
+
+                
                 if (checkWin(currentPlayer)) {
-                    alert(currentPlayer + ' wins!');
-                    if(currentPlayer ='X'){
-                        scorePlayer1();
-                    }else{
-                        scorePlayer2();
-                    }
-                    resetBoard();
-                } else if (checkDraw()) {
-                    alert('It\'s a draw!');
-                    resetBoard();
-                } else {
-                    // Switch players
-                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-                }
+                    document.getElementById('result').innerHTML = 'Player ' + currentPlayer + ' wins!';
+
+            if (currentPlayer === 'x') {
+                scorePlayer1();
+
+            }
+            if (currentPlayer === 'o') {
+                scorePlayer2();
+            }
+            setTimeout(resetBoard, 100); // Wait for 1 second and then reset the board
+          
+        } else {
+            // Switch players
+            if (currentPlayer === 'x') {
+                currentPlayer = 'o';
+            } else if (currentPlayer === 'o') {
+                currentPlayer = 'x';
+            }
+            document.getElementById('turn').innerHTML = currentPlayer + "' Turn";
+            // Check for a tie
+            if (a === 25) {
+                const drawMessage = "Tie!";
+                document.getElementById('result').textContent = drawMessage;
+
+                         setTimeout(resetBoard, 100); // Wait for 1 second and then reset the board
+            }
+
+        }
             }
         }
 
         function checkWin(player) {
+
+            
     // Check rows
     for (var i = 0; i < 5; i++) {
         for (var j = 0; j <= 5 - 4; j++) {
@@ -216,19 +419,11 @@
     }
     return false;
 }
-        function checkDraw() {
-            for (var i = 0; i < 5; i++) {
-                for (var j = 0; j < 5; j++) {
-                    if (board[i][j] === '') {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
+        
 
         function resetBoard() {
-            
+          
+            a=0;
             board = [
                 ['', '', '', '', ''],
                 ['', '', '', '', ''],
@@ -240,7 +435,7 @@
             for (var i = 0; i < cells.length; i++) {
                 cells[i].innerHTML = '';
             }
-            randomFirstPlayer();
+         //   randomFirstPlayer();
         }
     </script>
 </body>
