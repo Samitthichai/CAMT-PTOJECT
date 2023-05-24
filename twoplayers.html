@@ -17,7 +17,7 @@
 --clr-neonone : rgb(255, 59, 59) ;
             --clr-neontwo : #4343ff ;
         }
-        .container{
+        section{
             position: static;
             display: flex; 
             flex-direction: row;
@@ -25,11 +25,78 @@
             height: 100vh;
            
            justify-content: center;
-           background-image: url(back.fix.jpg);
+        background-color: #000000;
            
            align-items: center;
            overflow: hidden;
         }
+        section .star{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    animation: animate 8s ease-in-out infinite;
+}
+section .star.star1
+{
+    animation-delay: 0s;
+background: url(star1.png);
+}
+section .star.star2
+{
+    animation-delay: -1s;
+background: url(star2.png);
+}
+section .star.star3
+{
+    animation-delay: -2s;
+background: url(star3.png);
+}
+section .star.star4
+{
+    animation-delay: -3s;
+background: url(star4.png);
+}
+section .star.star5
+{
+    animation-delay: -4s;
+background: url(star5.png);
+}
+section .star.star6
+{
+    animation-delay: -5s;
+background: url(star6.png);
+}
+section .star.star7
+{
+    animation-delay: -6s;
+background: url(star6.png);
+}
+section .star.star8
+{
+    animation-delay: -7s;
+background: url(star8.png);
+}
+
+@keyframes animate
+{
+0%,20%,40%,60%,80%,100%{
+    opacity: 0;
+}
+10%,30%,50%,70%,90%,100%{
+    opacity: 1;
+}
+}
+@keyframes backgroundmove{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(2);
+    }
+}
         table{
             width: 385px;
         }
@@ -374,104 +441,114 @@ img{
 </head>
 <body>
  
-    <div class="container">
-        <div class="animate">
-<img class="rotate01" src="deathstarsss.png" alt="">
-        </div>
-        <button onclick="window.location.href = 'home.html';" class="back-homepage">Back</button> 
-        <button onclick="toggleMusic()" class="music-button">♫</button>
-        <div class="bord">
-            <table>
-                <tr>
-                    <td onclick="makeMove(0, 0)"></td>
-                    <td onclick="makeMove(0, 1)"></td>
-                    <td onclick="makeMove(0, 2)"></td>
-                    <td onclick="makeMove(0, 3)"></td>
-                    <td onclick="makeMove(0, 4)"></td>
-                </tr>
-                <tr>
-                    <td onclick="makeMove(1, 0)"></td>
-                    <td onclick="makeMove(1, 1)"></td>
-                    <td onclick="makeMove(1, 2)"></td>
-                    <td onclick="makeMove(1, 3)"></td>
-                    <td onclick="makeMove(1, 4)"></td>
-                </tr>
-                <tr>
-                    <td onclick="makeMove(2, 0)"></td>
-                    <td onclick="makeMove(2, 1)"></td>
-                    <td onclick="makeMove(2, 2)"></td>
-                    <td onclick="makeMove(2, 3)"></td>
-                    <td onclick="makeMove(2, 4)"></td>
-                </tr>
-                <tr>
-                    <td onclick="makeMove(3, 0)"></td>
-                    <td onclick="makeMove(3, 1)"></td>
-                    <td onclick="makeMove(3, 2)"></td>
-                    <td onclick="makeMove(3, 3)"></td>
-                    <td onclick="makeMove(3, 4)"></td>
-                </tr>
-                <tr>
-                    <td onclick="makeMove(4, 0)"></td>
-                    <td onclick="makeMove(4, 1)"></td>
-                    <td onclick="makeMove(4, 2)"></td>
-                    <td onclick="makeMove(4, 3)"></td>
-                    <td onclick="makeMove(4, 4)"></td>
-                </tr>
-            </table>
-            <div class="bord-player">
-
-                <div id="turn" class="turn">
-                 
-                            </div>
-                            <div class="playerwin-player">
-                                <div class="player">
-                                    <div id="plx" class="player-x-score">
-                                    
-                                    player 1 ( x )
-                                    <div id="score1" class="score x" >
-                                    0
-                                    
+<section>
+    <div class="animate">
+        <img class="rotate01" src="deathstarsss.png" alt="">
+                </div>
+                <button onclick="window.location.href = 'homes.html';" class="back-homepage">Back</button> 
+                <button onclick="toggleMusic()" class="music-button">♫</button>
+                <div class="bord">
+                    <table>
+                        <tr>
+                            <td onclick="makeMove(0, 0)"></td>
+                            <td onclick="makeMove(0, 1)"></td>
+                            <td onclick="makeMove(0, 2)"></td>
+                            <td onclick="makeMove(0, 3)"></td>
+                            <td onclick="makeMove(0, 4)"></td>
+                        </tr>
+                        <tr>
+                            <td onclick="makeMove(1, 0)"></td>
+                            <td onclick="makeMove(1, 1)"></td>
+                            <td onclick="makeMove(1, 2)"></td>
+                            <td onclick="makeMove(1, 3)"></td>
+                            <td onclick="makeMove(1, 4)"></td>
+                        </tr>
+                        <tr>
+                            <td onclick="makeMove(2, 0)"></td>
+                            <td onclick="makeMove(2, 1)"></td>
+                            <td onclick="makeMove(2, 2)"></td>
+                            <td onclick="makeMove(2, 3)"></td>
+                            <td onclick="makeMove(2, 4)"></td>
+                        </tr>
+                        <tr>
+                            <td onclick="makeMove(3, 0)"></td>
+                            <td onclick="makeMove(3, 1)"></td>
+                            <td onclick="makeMove(3, 2)"></td>
+                            <td onclick="makeMove(3, 3)"></td>
+                            <td onclick="makeMove(3, 4)"></td>
+                        </tr>
+                        <tr>
+                            <td onclick="makeMove(4, 0)"></td>
+                            <td onclick="makeMove(4, 1)"></td>
+                            <td onclick="makeMove(4, 2)"></td>
+                            <td onclick="makeMove(4, 3)"></td>
+                            <td onclick="makeMove(4, 4)"></td>
+                        </tr>
+                    </table>
+                    <div class="bord-player">
+        
+                        <div id="turn" class="turn">
+                         
                                     </div>
-                                    </div>
-                                    <div id="result" class="results" >
-                                    
-                        
-                                    </div>
-                                    <div id="plo" class="player-o-score">
-                                       
-                                        player 2 ( o )
-                                        <div id="score2" class="score o" >
-                                           0
-                                        </div>
-                                    </div>
+                                    <div class="playerwin-player">
+                                        <div class="player">
+                                            <div id="plx" class="player-x-score">
+                                            
+                                            player 1 ( x )
+                                            <div id="score1" class="score x" >
+                                            0
+                                            
+                                            </div>
+                                            </div>
+                                            <div id="result" class="results" >
+                                            
+                                
+                                            </div>
+                                            <div id="plo" class="player-o-score">
+                                               
+                                                player 2 ( o )
+                                                <div id="score2" class="score o" >
+                                                   0
                                                 </div>
-                            </div>
-        </div>
-       
-
-                    <audio id="player1win" src="player-1-wins.mp3"></audio>
-                    <audio id="player2win" src="player-2-wins.mp3"></audio>
-                    <audio id="tie" src="saber.mp3"></audio>
-                    <audio id="background-music" src="imperial-march.mp3" autoplay loop></audio>
-   <div class="reset">
-    
-    <button class="reset-point" onclick="resetScore()">reset score</button>
-   </div>
-       
-    </div>
-    <div class="contain-todo">
-        status
-        <div id="todo-list-container">
-            <div id="gamehead" class="gamehead">
-<!-- เกมที่เท่าไหร่-->
+                                            </div>
+                                                        </div>
+                                    </div>
+                </div>
+               
+        
+                            <audio id="player1win" src="player-1-wins.mp3"></audio>
+                            <audio id="player2win" src="player-2-wins.mp3"></audio>
+                            <audio id="tie" src="saber.mp3"></audio>
+                            <audio id="background-music" src="imperial-march.mp3" autoplay loop></audio>
+           <div class="reset">
+            
+            <button class="reset-point" onclick="resetScore()">reset score</button>
+           </div>
+               
             </div>
-            <div id="xandy" class="xandy">
-
-            </div>
-        </div>
-      </div>
+            <div class="contain-todo">
+                status
+                <div id="todo-list-container">
+                    <div id="gamehead" class="gamehead">
+        <!-- เกมที่เท่าไหร่-->
+                    </div>
+                    <div id="xandy" class="xandy">
+        
+                    </div>
+                </div>
+              </div>
+              <div class="star star1"></div>
+              <div class="star star2"></div>
+              <div class="star star3"></div>
+              <div class="star star4"></div>
+              <div class="star star5"></div>
+              <div class="star star6"></div>
+              <div class="star star7"></div>
+              <div class="star star8"></div>
+</section>
+ 
    
-</div>
+
 
     <script>
         // 5x5 array to represent the game board
