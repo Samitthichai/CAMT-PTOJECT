@@ -245,8 +245,8 @@ cursor: pointer;
             background-color: transparent;
         }
 
-        .music-button.paused:after {
-            content: "";
+        .music-button.paused::after {
+            content: "-";
             position: absolute;
             top: 50%;
             left: 50%;
@@ -371,7 +371,6 @@ cursor: pointer;
 </div>
  
     </div>
-   <audio></audio>
    <audio id="background-music" src="imperial_march.mp3" autoplay loop></audio>
     <script>
         const cells = document.querySelectorAll('.cell');

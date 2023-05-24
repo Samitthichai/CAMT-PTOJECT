@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+    <style>
+     body{
+            margin: 0;
+        }
+          @font-face {
+            font-family: myfont;
+            src: url(C:\Users\mamay\Downloads\star_jedi.zip\starjedi);
+        }
+        @import url(https://allfont.net/allfont.css?fonts=star-jedi);
+        :root{
+            --clr-neon: #FFE81F;
+            --clr-bg : black ;
+--clr-neonone : rgb(255, 59, 59) ;
+            --clr-neontwo : #4343ff ;
+        }
+        .container{
+            position: static;
+            display: flex; 
+            flex-direction: row;
+            width: 100%;
+            height: 100vh;
+           
+           justify-content: center;
+           background-image: url(back.fix.jpg);
+           
+           align-items: center;
+           overflow: hidden;
+        }
+        table{
+            width: 385px;
+        }
+      
+        td {
+            border-radius: 5px;
+            font-family: 'Star Jedi', arial;
+    font-size: 20px;
+            margin: 2px;
+           text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+     width: 70px;
+     height: 70px;
+            cursor: pointer;
+            border: var(--clr-neon )2px solid;
+            box-shadow: inset 0 0 .5em var(--clr-neon),0 0 .5em var(--clr-neon)
+;
+
+color: black;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+    text-shadow: 0 0 20px #ffffff ;
+        }
+        td:hover {
+            background-color: #ddd;
+        }
+        .reset-button {
+            display: block;
+            width: 100px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+         
+.bord{
+    display: flex; 
+            flex-direction: column;
+          align-items: center;
+           
+}
+        .player{
+        
+        font-family: 'Star Jedi', arial;
+
+           display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #ddd;
+        
+        justify-content: center;
+        align-items: center;
+    }
+    .player-x-score{
+       font-size: 25px;
+  padding: 20px;
+   
+   border-top:hidden ;
+   border-bottom: hidden;
+   border-left: hidden;
+        color: black;
+         -webkit-text-stroke: 1px rgb(255, 26, 26);
+text-shadow: 0 0 20px #ff005b ;
+    }
+    .player-o-score{
+        font-size: 25px;
+        
+        padding: 20px;
+   border-top:hidden ;
+   border-bottom: hidden;
+   border-right: hidden;
+   -webkit-text-stroke: 1px rgb(0, 8, 255);
+        color: rgb(0, 0, 0);
+        text-shadow: 0 0 20px #0099ff ;
+    }
+    .score{
+        font-size: 40px;
+        padding: 20px;
+        margin-top: 5px;
+        text-align: center;
+
+    }
+
+.results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ margin-top: 20px;
+  
+    width: 200px;
+  height: 60px;
+    border-radius: 5px;
+            font-family: 'Star Jedi', arial;
+    font-size: 30px;
+            
+           text-align: center;
+      
+
+            color: #000000;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+text-align: center;
+text-shadow: 0 0 20px #ffffff ;
+}
+ .turn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ margin-top: 20px;
+  
+    width: 200px;
+  height: 60px;
+    border-radius: 5px;
+            font-family: 'Star Jedi', arial;
+    font-size: 20px;
+            
+           text-align: center;
+      
+  border: none;
+  border: 2px solid white;
+            box-shadow: inset 0 0 .5em white,0 0 .5em white;
+            color: #000000;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+text-align: center;
+text-shadow: 0 0 20px #ffffff ;
+}  
+.reset{
+   
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+  justify-content: center;
+ }.reset-point{
+            
+    font-family: 'Star Jedi', Arial;
+    font-size: 20px;
+    border-radius: 10px;
+background-color: #000000;
+border: 2px solid yellow;
+color: #000000;
+-webkit-text-stroke: 1px rgb(238, 255, 0);
+box-shadow: inset 0 0 0.5em var(--clr-neon), 0 0 0.5em var(--clr-neon);
+text-shadow: 0 0 10px #e5ff00 ;
+cursor: pointer;
+       } 
+      
+        .reset-point:hover:before {
+            animation: none;
+            opacity: 0;
+        }
+        .reset-point:hover {
+            color: #000000;
+            background-color: #FFE81F;
+        }
+        .bord-player{
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+.playerwin-player{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}    .music-point {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: 2px solid #FFE81F;
+            cursor: pointer;
+            z-index: 1;
+            color: #FFE81F;
+            font-size: 16px;
+            border-radius: 50%;
+            font-size: 30px;
+        }
+        .music-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: 2px solid var(--clr-neon);
+            cursor: pointer;
+            z-index: 1;
+            color: var(--clr-neon);
+            font-size: 16px;
+            border-radius: 50%;
+            font-size: 30px;
+            text-shadow: 0 0 .20em #fff7, 0 0 .10em var(--clr-neon);
+            box-shadow: inset 0 0 .5em var(--clr-neon), 0 0 .5em var(--clr-neon);
+        }
+
+        .music-button:before {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 400% 400%;
+            z-index: -1;
+            filter: blur(20px);
+            animation: neon-gradient 2s ease-in-out infinite;
+        }
+        .music-button.paused:before {
+            background-color: transparent;
+        }
+
+        .music-button.paused::after {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 39px;
+            height: 2px;
+            background-color: var(--clr-neon);
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .music-button:hover {
+            color: #000000;
+            background-color: var(--clr-neon);
+        }
+
+        .music-button:hover:before {
+            animation: none;
+            opacity: 0;
+        }
+        .back-homepage{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: transparent;
+            border: 2px solid var(--clr-neon);
+            cursor: pointer;
+            z-index: 1;
+            color: var(--clr-neon);
+            font-size: 16px;
+            border-radius: 15%;
+            font-size: 25px;
+            text-shadow: 0 0 .20em #fff7, 0 0 .10em var(--clr-neon);
+            box-shadow: inset 0 0 .5em var(--clr-neon), 0 0 .5em var(--clr-neon);
+        }
+        .back-homepage:hover {
+            color: #000000;
+            background-color: var(--clr-neon);
+        }
+/*background Animation*/
+.contain-todo{
+    font-family: 'Star Jedi', arial;
+    font-size: 30px;
+    margin-left: 100px;
+    overflow-y: scroll;
+  height: 400px; 
+    position: static;
+    text-align: center;
+
+    border: 1px solid white;
+    width: 300px;
+    height: 97vh;
+    color: #ddd;
+    border: 2px solid white;
+            box-shadow: inset 0 0 .6em white,0 0 .6em white
+;
+
+color: black;
+-webkit-text-stroke: 1px rgb(255, 255, 255);
+    text-shadow: 0 0 20px #ffffff ;
+}
+#todo-list-container{
+    font-family: 'Star Jedi', arial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+#gamehead{
+    font-size: 24px;
+    text-align: center;
+
+}
+.todo-item{
+    border-bottom: 1px solid white;
+    border: 2px solid white;
+            box-shadow: inset 0 0 .6em white,0 0 .6em white
+;
+}
+::-webkit-scrollbar {
+  width: 12px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: linear-gradient(transparent, #ffffff);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(transparent, rgb(105, 105, 231));
+}
+.animate{
+    display: flex;
+    position: relative;
+   
+}
+img{
+    height: 200px;
+   
+    
+}
+
+.rotate01{
+    -webkit-animation: spin 10s linear infinite;
+    -moz-animation: spin 10s linear infinite;
+    animation: spin 10s linear infinite;
+    position: relative;
+
+}
+@-webkit-keyframes spin{
+100%{
+    -webkit-transform: rotate(360deg);
+}
+
+}
+@-moz-keyframes spin{
+    100%{
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin{
+    100%{
+        -webkit-transform: rotate(360deg);
+    }
+}
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="animate">
+<img class="rotate01" src="deathstarsss.png" alt="">
+        </div>
+        <button onclick="window.location.href = 'home.html';" class="back-homepage">Back</button> 
+        <button onclick="toggleMusic()" class="music-button">♫</button>
+        <div class="bord">
+            <table>
+                <tr>
+                    <td onclick="makeMove(0, 0)"></td>
+                    <td onclick="makeMove(0, 1)"></td>
+                    <td onclick="makeMove(0, 2)"></td>
+                    <td onclick="makeMove(0, 3)"></td>
+                    <td onclick="makeMove(0, 4)"></td>
+                </tr>
+                <tr>
+                    <td onclick="makeMove(1, 0)"></td>
+                    <td onclick="makeMove(1, 1)"></td>
+                    <td onclick="makeMove(1, 2)"></td>
+                    <td onclick="makeMove(1, 3)"></td>
+                    <td onclick="makeMove(1, 4)"></td>
+                </tr>
+                <tr>
+                    <td onclick="makeMove(2, 0)"></td>
+                    <td onclick="makeMove(2, 1)"></td>
+                    <td onclick="makeMove(2, 2)"></td>
+                    <td onclick="makeMove(2, 3)"></td>
+                    <td onclick="makeMove(2, 4)"></td>
+                </tr>
+                <tr>
+                    <td onclick="makeMove(3, 0)"></td>
+                    <td onclick="makeMove(3, 1)"></td>
+                    <td onclick="makeMove(3, 2)"></td>
+                    <td onclick="makeMove(3, 3)"></td>
+                    <td onclick="makeMove(3, 4)"></td>
+                </tr>
+                <tr>
+                    <td onclick="makeMove(4, 0)"></td>
+                    <td onclick="makeMove(4, 1)"></td>
+                    <td onclick="makeMove(4, 2)"></td>
+                    <td onclick="makeMove(4, 3)"></td>
+                    <td onclick="makeMove(4, 4)"></td>
+                </tr>
+            </table>
+            <div class="bord-player">
+
+                <div id="turn" class="turn">
+                 
+                            </div>
+                            <div class="playerwin-player">
+                                <div class="player">
+                                    <div id="plx" class="player-x-score">
+                                    
+                                    player 1 ( x )
+                                    <div id="score1" class="score x" >
+                                    0
+                                    
+                                    </div>
+                                    </div>
+                                    <div id="result" class="results" >
+                                    
+                        
+                                    </div>
+                                    <div id="plo" class="player-o-score">
+                                       
+                                        player 2 ( o )
+                                        <div id="score2" class="score o" >
+                                           0
+                                        </div>
+                                    </div>
+                                                </div>
+                            </div>
+        </div>
+       
+
+                    <audio id="player1win" src="player-1-wins.mp3"></audio>
+                    <audio id="player2win" src="player-2-wins.mp3"></audio>
+                    <audio id="tie" src="saber.mp3"></audio>
+                    <audio id="background-music" src="imperial-march.mp3" autoplay loop></audio>
+   <div class="reset">
+    
+    <button class="reset-point" onclick="resetScore()">reset score</button>
+   </div>
+       
+    </div>
+    <div class="contain-todo">
+        status
+        <div id="todo-list-container">
+            <div id="gamehead" class="gamehead">
+<!-- เกมที่เท่าไหร่-->
+            </div>
+            <div id="xandy" class="xandy">
+
+            </div>
+        </div>
+      </div>
+   
+</div>
+    <script>
+    var CRUD_CURD_ID = "485bd7f6885342ff86d753ff0a7af9a6";
+      var CRUD_CURD_RESOURCE_NAME = "history1";
+      var CURD_CURD_API_ENDPOINT = "https://crudcrud.com/api/" + CRUD_CURD_ID + "/" + CRUD_CURD_RESOURCE_NAME;
+      var APPLICATION_STATE = {
+      todoList: [],
+    };
+
+
+ 
+    function htmlToElem(html) {
+      let temp = document.createElement("template");
+      html = html.trim(); 
+      temp.innerHTML = html;
+      return temp.content.firstChild;
+    }
+
+
+
+    async function loadTodoList(afterLoadFunction) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+
+      var requestOptions = {
+        method: "GET",
+        headers: headers,
+      };
+
+      await fetch(CURD_CURD_API_ENDPOINT, requestOptions).then(function (
+        response
+      ) {
+        response.json().then(function (data) {
+          afterLoadFunction(data);
+        });
+      });
+    }
+
+    function addNewTodoItem(value) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+
+      var requestOptions = {
+        method: "POST",
+        body: JSON.stringify({
+        score: value,
+
+        }),
+        headers: headers,
+      };
+
+
+      fetch(CURD_CURD_API_ENDPOINT, requestOptions).then(function (response) {
+        response.json().then(function (data) {
+          refreshTodoList();
+        });
+      });
+      refreshTodoList();
+    }
+    
+
+    function bindEvents() {
+      
+        var inputElm = "";
+        if (inputElm !== "") {
+          addNewTodoItem(inputElm, function () {
+            refreshTodoList();
+          });
+        }
+      };
+    
+
+    function renderTodoList() {
+      var todoListElm = document.getElementById("todo-list-container");
+      todoListElm.innerHTML = "";
+      
+      for (var idx = 0; idx < APPLICATION_STATE.todoList.length; idx++) {
+        var todoItem = APPLICATION_STATE.todoList[idx];
+        var todoItemElm = htmlToElem(
+            
+        '<div class="todo-item">'+"game : " +(idx+1) +
+                '<div class="scorexandy">'+todoItem.score 
+    
+        );
+        todoListElm.append(todoItemElm);
+      }
+    }
+
+    function refreshTodoList() {
+      loadTodoList(function (data) {
+        APPLICATION_STATE.todoList = data;
+        renderTodoList();
+      });
+    }
+
+    window.onload = function () {
+      bindEvents();
+      refreshTodoList();
+    };
+
+
+
+
+
+
+
+
+    
+
+        // 5x5 array to represent the game board
+        var board = [
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', '']
+        ];
+        var score1 =0;
+        var score2 =0;
+        var currentPlayer = 'x';
+        /*displayer when player win*/
+        const player1Win =document.getElementById('player1win');
+        const player2Win =document.getElementById('player2win');
+const tie = document.getElementById('tie');
+/*                          */
+var audio = document.getElementById("background-music");
+       
+       var musicButton = document.querySelector(".music-button");
+
+       var player_x = document.getElementById('plx');
+var player_o = document.getElementById('plo');
+function toggleMusic() {
+        if (audio.paused) {
+            audio.play();
+            musicButton.classList.remove("paused");
+        } else {
+            audio.pause();
+            musicButton.classList.add("paused");
+        }
+        }
+        function randomFirstPlayer(){
+            const num1 = Math.floor((Math.random() * 2) + 1);
+            console.log(num1);
+            if(num1 == 1){
+                currentPlayer ='x';         
+            }else{
+                currentPlayer ='o';       
+            }
+            console.log(currentPlayer);
+          
+        }
+        function scorePlayer1() {
+            score1++;
+            console.log(score2);
+            document.getElementById('score1').textContent = score1;
+        }
+        function scorePlayer2() {
+            score2++;
+            console.log(score2);
+            document.getElementById('score2').textContent = score2;
+        }
+
+        function resetScore() {
+      score1 = 0;
+      score2 = 0;
+      document.getElementById('score1').textContent = score1;
+      document.getElementById('score2').textContent = score2;
+    }
+
+
+        function makeMove(row, col) {
+        
+        if (board[row][col] === '') {
+            board[row][col] = currentPlayer;
+            document.getElementsByTagName('td')[row * 5 + col].innerHTML = currentPlayer;
+
+            if (checkWin(currentPlayer)) {
+                document.getElementById('result').innerHTML = 'Player ' + currentPlayer + ' wins !';
+              
+                if(currentPlayer ==='x'){
+                        scorePlayer1();
+                        player1Win.play();
+                    }
+                if(currentPlayer ==='o'){
+                        scorePlayer2();
+                        player2Win.play();
+                }
+                setTimeout(resetWinPlayer,1900)
+            setTimeout(resetBoard, 300); // Wait for 1 second and then reset the board
+              if (score1 == 3) {
+              winner = "x " + score1 + "-" + score2 + " o";
+              resetScore();
+
+              addNewTodoItem(winner, function () {
+                refreshTodoList();
+              });
+            }
+            if (score2 == 3) {
+              winner = winner = "o " + score2 + "-" + score1 + " x";
+              resetScore();
+
+              addNewTodoItem(winner, function () {
+                refreshTodoList();
+              });
+            }
+                
+            } else if (checkDraw()) {
+                document.getElementById('result').innerHTML = ' drown !';
+                tie.play();
+                         setTimeout(resetWinPlayer, 1500);
+                         setTimeout(resetBoard, 300); // Wait for 1 second and then reset the board
+            } 
+            else {
+                currentPlayer = (currentPlayer === 'x') ? 'o' : 'x';
+                if (currentPlayer === 'o') {
+                    isBotTurn = true;                 
+                       setTimeout(makeBotMove,500);                
+                }
+                
+            }
+            
+             
+            document.getElementById('turn').innerHTML = currentPlayer + "' Turn";
+        }
+    }
+
+
+        function checkWin(player) {
+    // Check rows
+    for (var i = 0; i < 5; i++) {
+        for (var j = 0; j <= 5 - 4; j++) {
+            if (
+                board[i][j] === player &&
+                board[i][j + 1] === player &&
+                board[i][j + 2] === player &&
+                board[i][j + 3] === player
+            ) {
+                return true;
+            }
+            
+        }
+    }
+    // Check columns
+    for (var j = 0; j < 5; j++) {
+        for (var i = 0; i <= 5 - 4; i++) {
+
+            
+            if (
+                board[i][j] === player &&
+                board[i + 1][j] === player &&
+                board[i + 2][j] === player &&
+                board[i + 3][j] === player
+            ) {
+                return true;
+            }
+        }
+    }
+    // Check diagonals (top-left to bottom-right)
+    for (var i = 0; i <= 5 - 4; i++) {
+        for (var j = 0; j <= 5 - 4; j++) {
+            if (
+                board[i][j] === player &&
+                board[i + 1][j + 1] === player &&
+                board[i + 2][j + 2] === player &&
+                board[i + 3][j + 3] === player
+            ) {
+                return true;
+            }
+        }
+    }
+    // Check diagonals (top-right to bottom-left)
+    for (var i = 0; i <= 5 - 4; i++) {
+        for (var j = 3; j < 5; j++) {
+            if (
+                board[i][j] === player &&
+                board[i + 1][j - 1] === player &&
+                board[i + 2][j - 2] === player &&
+                board[i + 3][j - 3] === player
+            ) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+        function checkDraw() {
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 5; j++) {
+                    if (board[i][j] === '') {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function resetBoard() {
+            currentPlayer='x';
+        board = [
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', ''],
+            ['', '', '', '', '']
+        ];
+        currentPlayer = 'x';
+        var cells = document.getElementsByTagName('td');
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].innerHTML = '';
+        }
+    }
+        
+    function makeBotMove() {
+
+        var emptyCells = [];
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 5; j++) {
+                    if (board[i][j] === 'x' && i>0 && j>0 &&i<4 && j<4){
+                        if(board[i][j+1] === ''){
+                            emptyCells.push({ row: i, col: j+1 });  
+                        }
+                        if(board[i][j-1] === ''){
+                            emptyCells.push({ row: i, col: j-1 });  
+                        }
+                        if(board[i+1][j] === ''){
+                            emptyCells.push({ row: i+1, col: j });  
+                        }
+                        if(board[i-1][j] === ''){
+                            emptyCells.push({ row: i-1, col: j });  
+                        }                                           
+                    }
+                    if(board[0][0] ==='x'){
+                        if(board[0][1] === ''){
+                            emptyCells.push({ row: 0, col: 1 });  
+                        }
+                        if(board[1][0] === ''){
+                            emptyCells.push({ row: 1, col: 0 });  
+                        }
+                        if(board[1][1] === ''){
+                            emptyCells.push({ row: 1, col: 1 });  
+                        }
+                    }
+                    if(board[0][4] ==='x'){
+                        if(board[0][3] === ''){
+                            emptyCells.push({ row: 0, col: 3 });  
+                        }
+                        if(board[1][4] === ''){
+                            emptyCells.push({ row: 1, col: 4 });  
+                        }
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                    }
+                    if(board[4][0] ==='x'){
+                        if(board[3][0] === ''){
+                            emptyCells.push({ row: 3, col: 0 });  
+                        }
+                        if(board[3][1] === ''){
+                            emptyCells.push({ row: 3, col: 1 });  
+                        }
+                        if(board[4][1] === ''){
+                            emptyCells.push({ row: 4, col: 1 });  
+                        }
+                    }
+                    if(board[4][4] ==='x'){
+                        if(board[4][3] === ''){
+                            emptyCells.push({ row: 4, col: 3 });  
+                        }
+                        if(board[3][3] === ''){
+                            emptyCells.push({ row: 3, col: 3 });  
+                        }
+                        if(board[3][4] === ''){
+                            emptyCells.push({ row: 3, col: 4 });  
+                        }
+                    }
+                    if(board[0][1] ==='x'){
+                        if(board[0][0] === ''){
+                            emptyCells.push({ row: 0, col: 0 });  
+                        }
+                        if(board[1][0] === ''){
+                            emptyCells.push({ row: 1, col: 0 });  
+                        }
+                        if(board[1][1] === ''){
+                            emptyCells.push({ row: 1, col: 1 });  
+                        }
+                        if(board[1][2] === ''){
+                            emptyCells.push({ row: 1, col: 2 });  
+                        }
+                        if(board[0][2] === ''){
+                            emptyCells.push({ row: 0, col: 2 });  
+                        }         
+                    }
+                    if(board[0][2] ==='x'){
+                        if(board[0][1] === ''){
+                            emptyCells.push({ row: 0, col: 1 });  
+                        }
+                        if(board[1][1] === ''){
+                            emptyCells.push({ row: 1, col: 1 });  
+                        }
+                        if(board[1][2] === ''){
+                            emptyCells.push({ row: 1, col: 2 });  
+                        }
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[0][3] === ''){
+                            emptyCells.push({ row: 0, col: 4 });  
+                        }         
+                    }
+                    if(board[0][3] ==='x'){
+                        if(board[0][2] === ''){
+                            emptyCells.push({ row: 0, col: 2 });  
+                        }
+                        if(board[1][2] === ''){
+                            emptyCells.push({ row: 1, col: 2 });  
+                        }
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[1][4] === ''){
+                            emptyCells.push({ row: 1, col: 4 });  
+                        }
+                        if(board[0][4] === ''){
+                            emptyCells.push({ row: 0, col: 4 });  
+                        }         
+                    }
+                    if(board[1][4] ==='x'){
+                        if(board[0][3] === ''){
+                            emptyCells.push({ row: 0, col: 3 });  
+                        }
+                        if(board[0][4] === ''){
+                            emptyCells.push({ row: 0, col: 4 });  
+                        }
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[2][3] === ''){
+                            emptyCells.push({ row: 2, col: 3 });  
+                        }
+                        if(board[2][4] === ''){
+                            emptyCells.push({ row: 2, col: 4 });  
+                        }         
+                    }
+                    if(board[2][4] ==='x'){
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[1][4] === ''){
+                            emptyCells.push({ row: 1, col: 4 });  
+                        }
+                        if(board[2][3] === ''){
+                            emptyCells.push({ row: 2, col: 3 });  
+                        }
+                        if(board[3][3] === ''){
+                            emptyCells.push({ row: 3, col: 3 });  
+                        }
+                        if(board[3][4] === ''){
+                            emptyCells.push({ row: 3, col: 4 });  
+                        }         
+                    }
+                    if(board[3][4] ==='x'){
+                        if(board[2][3] === ''){
+                            emptyCells.push({ row: 2, col: 3 });  
+                        }
+                        if(board[2][4] === ''){
+                            emptyCells.push({ row: 2, col: 4 });  
+                        }
+                        if(board[3][3] === ''){
+                            emptyCells.push({ row: 3, col: 3 });  
+                        }
+                        if(board[4][3] === ''){
+                            emptyCells.push({ row: 4, col: 3 });  
+                        }
+                        if(board[4][4] === ''){
+                            emptyCells.push({ row: 4, col: 4 });  
+                        }         
+                    }
+                    if(board[0][1] ==='x'){
+                        if(board[0][0] === ''){
+                            emptyCells.push({ row: 0, col: 0 });  
+                        }
+                        if(board[0][1] === ''){
+                            emptyCells.push({ row: 0, col: 1 });  
+                        }
+                        if(board[1][1] === ''){
+                            emptyCells.push({ row: 1, col: 1 });  
+                        }
+                        if(board[1][2] === ''){
+                            emptyCells.push({ row: 1, col: 2 });  
+                        }
+                        if(board[0][2] === ''){
+                            emptyCells.push({ row: 0, col: 2 });  
+                        }         
+                    }
+                    if(board[0][2] ==='x'){
+                        if(board[0][1] === ''){
+                            emptyCells.push({ row: 0, col: 1 });  
+                        }
+                        if(board[0][2] === ''){
+                            emptyCells.push({ row: 0, col: 2 });  
+                        }
+                        if(board[1][2] === ''){
+                            emptyCells.push({ row: 1, col: 2 });  
+                        }
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[0][3] === ''){
+                            emptyCells.push({ row: 0, col: 3 });  
+                        }         
+                    }
+                    if(board[0][3] ==='x'){
+                        if(board[0][2] === ''){
+                            emptyCells.push({ row: 0, col: 2 });  
+                        }
+                        if(board[0][3] === ''){
+                            emptyCells.push({ row: 0, col: 3 });  
+                        }
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[1][4] === ''){
+                            emptyCells.push({ row: 1, col: 4 });  
+                        }
+                        if(board[0][4] === ''){
+                            emptyCells.push({ row: 0, col: 4 });  
+                        }         
+                    }
+                    if(board[1][4] ==='x'){
+                        if(board[0][3] === ''){
+                            emptyCells.push({ row: 0, col: 3 });  
+                        }
+                        if(board[0][4] === ''){
+                            emptyCells.push({ row: 0, col: 4 });  
+                        }
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[2][3] === ''){
+                            emptyCells.push({ row: 2, col: 3 });  
+                        }
+                        if(board[2][4] === ''){
+                            emptyCells.push({ row: 2, col: 4 });  
+                        }         
+                    }
+                    if(board[2][4] ==='x'){
+                        if(board[1][3] === ''){
+                            emptyCells.push({ row: 1, col: 3 });  
+                        }
+                        if(board[1][4] === ''){
+                            emptyCells.push({ row: 1, col: 4 });  
+                        }
+                        if(board[2][3] === ''){
+                            emptyCells.push({ row: 2, col: 3 });  
+                        }
+                        if(board[3][3] === ''){
+                            emptyCells.push({ row: 3, col: 3 });  
+                        }
+                        if(board[3][4] === ''){
+                            emptyCells.push({ row: 3, col: 4 });  
+                        }         
+                    }
+                    if(board[3][4] ==='x'){
+                        if(board[2][4] === ''){
+                            emptyCells.push({ row: 2, col: 4 });  
+                        }
+                        if(board[2][3] === ''){
+                            emptyCells.push({ row: 2, col: 3 });  
+                        }
+                        if(board[3][3] === ''){
+                            emptyCells.push({ row: 3, col: 3 });  
+                        }
+                        if(board[4][3] === ''){
+                            emptyCells.push({ row: 4, col: 3 });  
+                        }
+                        if(board[4][4] === ''){
+                            emptyCells.push({ row: 4, col: 4 });  
+                        }         
+                    }
+                    if(board[1][0] ==='x'){
+                        if(board[0][0] === ''){
+                            emptyCells.push({ row: 0, col: 0 });  
+                        }
+                        if(board[0][1] === ''){
+                            emptyCells.push({ row: 0, col: 1 });  
+                        }
+                        if(board[1][1] === ''){
+                            emptyCells.push({ row: 1, col: 1 });  
+                        }
+                        if(board[2][1] === ''){
+                            emptyCells.push({ row: 2, col: 1 });  
+                        }
+                        if(board[2][0] === ''){
+                            emptyCells.push({ row: 2, col: 0 });  
+                        }         
+                    }
+                    if(board[2][0] ==='x'){
+                        if(board[1][0] === ''){
+                            emptyCells.push({ row: 1, col: 0 });  
+                        }
+                        if(board[1][1] === ''){
+                            emptyCells.push({ row: 1, col: 1 });  
+                        }
+                        if(board[2][1] === ''){
+                            emptyCells.push({ row: 2, col: 1 });  
+                        }
+                        if(board[3][0] === ''){
+                            emptyCells.push({ row: 3, col: 0 });  
+                        }
+                        if(board[3][1] === ''){
+                            emptyCells.push({ row: 3, col: 1 });  
+                        }         
+                    }
+                    if(board[3][0] ==='x'){
+                        if(board[2][0] === ''){
+                            emptyCells.push({ row: 2, col: 0 });  
+                        }
+                        if(board[2][1] === ''){
+                            emptyCells.push({ row: 2, col: 1 });  
+                        }
+                        if(board[3][1] === ''){
+                            emptyCells.push({ row: 3, col: 1 });  
+                        }
+                        if(board[4][0] === ''){
+                            emptyCells.push({ row: 4, col: 0 });  
+                        }
+                        if(board[4][1] === ''){
+                            emptyCells.push({ row: 4, col: 1 });  
+                        }         
+                    }
+                    if(board[4][1] ==='x'){
+                        if(board[4][0] === ''){
+                            emptyCells.push({ row: 4, col: 0 });  
+                        }
+                        if(board[3][0] === ''){
+                            emptyCells.push({ row: 3, col: 0 });  
+                        }
+                        if(board[3][1] === ''){
+                            emptyCells.push({ row: 3, col: 1 });  
+                        }
+                        if(board[3][2] === ''){
+                            emptyCells.push({ row: 3, col: 2 });  
+                        }
+                        if(board[4][2] === ''){
+                            emptyCells.push({ row: 4, col: 2 });  
+                        }         
+                    }
+                    if(board[4][2] ==='x'){
+                        if(board[4][1] === ''){
+                            emptyCells.push({ row: 4, col: 1 });  
+                        }
+                        if(board[3][1] === ''){
+                            emptyCells.push({ row: 3, col: 1 });  
+                        }
+                        if(board[3][2] === ''){
+                            emptyCells.push({ row: 3, col: 2 });  
+                        }
+                        if(board[3][3] === ''){
+                            emptyCells.push({ row: 3, col: 3 });  
+                        }
+                        if(board[4][3] === ''){
+                            emptyCells.push({ row: 4, col: 3 });  
+                        }         
+                    } 
+                    if(board[4][3] ==='x'){
+                        if(board[4][2] === ''){
+                            emptyCells.push({ row: 4, col: 2 });  
+                        }
+                        if(board[3][2] === ''){
+                            emptyCells.push({ row: 3, col: 2 });  
+                        }
+                        if(board[3][3] === ''){
+                            emptyCells.push({ row: 3, col: 3 });  
+                        }
+                        if(board[3][4] === ''){
+                            emptyCells.push({ row: 3, col: 4 });  
+                        }
+                        if(board[4][4] === ''){
+                            emptyCells.push({ row: 4, col: 4 });  
+                        }         
+                    } 
+                
+
+
+                
+                    
+                    
+                }
+            }
+
+            var randomIndex = Math.floor(Math.random() * emptyCells.length);
+            var botMove = emptyCells[randomIndex];
+            makeMove(botMove.row, botMove.col);
+
+        }
+        function resetBoard() {
+          currentPlayer='x';
+          a=0;
+          board = [
+              ['', '', '', '', ''],
+              ['', '', '', '', ''],
+              ['', '', '', '', ''],
+              ['', '', '', '', ''],
+              ['', '', '', '', '']
+          ];
+          var cells = document.getElementsByTagName('td');
+          for (var i = 0; i < cells.length; i++) {
+              cells[i].innerHTML = '';
+          }
+     
+       
+      }
+      function resetWinPlayer(){
+          document.getElementById('result').innerHTML = " ";
+      }
+    
+    
+    </script>
+</body>
+</html>
